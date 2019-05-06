@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  generator:
+    build: ./generator
+    environment:
+      KAFKA_BROKER_URL: broker:9092
+      KAFKA_TRANSACTIONS_TOPIC: queueing.transactions
+      TRANSACTIONS_PER_SECOND: 1000
+      REDIS_SERVER_URL: redis
+
+  detector:
+    build: ./detector
+    environment:
+      KAFKA_BROKER_URL: broker:9092
+      KAFKA_TRANSACTIONS_TOPIC: queueing.transactions
+      KAFKA_LEGIT_TOPIC: streaming.transactions.legit
+      KAFKA_FRAUD_TOPIC: streaming.transactions.fraud
+
+networks:
+  default:
+    external:
+      name: kafka-network

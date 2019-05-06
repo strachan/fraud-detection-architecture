@@ -7,7 +7,6 @@ services:
       KAFKA_BROKER_URL: broker:9092
       KAFKA_TRANSACTIONS_TOPIC: queueing.transactions
       TRANSACTIONS_PER_SECOND: 1000
-      REDIS_SERVER_URL: redis
 
   detector:
     build: ./detector
